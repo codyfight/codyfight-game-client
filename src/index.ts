@@ -1,0 +1,56 @@
+import axios from 'axios';
+
+const API_URL = 'https://game.codyfight.com/'
+
+export default class GameAPI {
+  public apiURL: string
+
+  constructor(apiURL: string = API_URL) {
+    this.apiURL = apiURL
+  }
+
+  getGameConstants() {
+    return {
+      // Game constant
+      // ...
+    }
+  }
+
+  async init(ckey: string, mode: string, opponent: string): Promise<any> {
+    return await this.makeRequest('POST', { ckey, mode, opponent })
+  }
+
+  async cast(
+    ckey: string,
+    skill_id: number,
+    x: number,
+    y: number
+  ): Promise<any> {
+    return await this.makeRequest('PATCH', { ckey, skill_id, x, y })
+  }
+
+  async move(ckey: string, x: number, y: number): Promise<any> {
+    return await this.makeRequest('PUT', { ckey, x, y })
+  }
+
+  async check(ckey: string): Promise<any> {
+    return await this.makeRequest('GET', { ckey })
+  }
+
+  private async makeRequest(method: string, params: any): Promise<any> {
+    const config = {
+      method,
+      url: `${this.apiURL}?ckey=${params.ckey}`,
+      headers: { 'Content-Type': 'application/json' },
+      data: {},
+    }
+
+    if (method !== 'GET' && method !== 'HEAD') {
+      config.data = params
+    }
+
+    const { data } = await axios(config)
+
+    return data
+  }
+}
