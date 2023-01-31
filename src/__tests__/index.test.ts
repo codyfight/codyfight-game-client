@@ -28,7 +28,7 @@ describe('GameAPI', () => {
 
   it('should make a POST request on init', async () => {
     const ckey = 'abc'
-    const mode = 'PvP'
+    const mode = 2
     const opponent = 'def'
     const params = { ckey, mode, opponent }
     const response = { data: 'game init successful' }

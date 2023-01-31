@@ -16,7 +16,11 @@ export default class GameAPI {
     }
   }
 
-  async init(ckey: string, mode: string, opponent: string): Promise<any> {
+  async init(
+    ckey: string,
+    mode: 0 | 1 | 2 | 3,
+    opponent: string
+  ): Promise<any> {
     return await this.makeRequest('POST', { ckey, mode, opponent })
   }
 
