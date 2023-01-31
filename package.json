@@ -4,6 +4,7 @@
   "description": "Easily implement Codyfight game actions. A library for interacting with game API.",
   "license": "MIT",
   "repository": "codyfight/codyfight-game-client",
+  "homepage": "https://codyfight.com/api-doc/",
   "author": {
     "name": "Codyfight",
     "email": "game@codyfight.com",
