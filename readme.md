@@ -23,10 +23,9 @@ The constructor of the class takes an optional parameter `apiURL`, which is a st
 import it with the following code:
 
 ```js
-import codyfightNodeLib as GameAPI from 'codyfight-game-client'
+import GameAPI from 'codyfight-game-client'
 
-
-const gameAPI = new GameAPI(apiURL);
+const gameAPI = new GameAPI(apiURL)
 ```
 
 ## API
