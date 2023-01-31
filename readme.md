@@ -31,10 +31,6 @@ const gameAPI = new GameAPI(apiURL);
 
 ## API
 
-## Methods
-
----
-
 The API has the following public methods:
 
 ### getGameConstants
