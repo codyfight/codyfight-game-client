@@ -1,8 +1,14 @@
 # codyfight-node-lib
 
+![image](https://user-images.githubusercontent.com/47956560/208454344-a4666878-2d2d-48df-91c4-ab8d9ee51caa.png)
+
 A library for interacting with the game API of `https://game.codyfight.com/`.
 
 Easily implement the Codyfight game actions.
+
+---
+
+📜 Make sure to checkout the game [API documentation](https://codyfight.com/api-doc/).
 
 ## Install
 
