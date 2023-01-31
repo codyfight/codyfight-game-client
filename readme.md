@@ -1,8 +1,8 @@
-# codyfight-node-lib
+# codyfight-game-client
 
 ![image](https://user-images.githubusercontent.com/47956560/208454344-a4666878-2d2d-48df-91c4-ab8d9ee51caa.png)
 
-A library for interacting with [Codyfight](https://codyfight.com) game API of.
+A library for interacting with [Codyfight](https://codyfight.com) game API.
 
 Easily implement [Codyfight](https://codyfight.com) game actions.
 

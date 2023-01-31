@@ -1,9 +1,9 @@
 {
-  "name": "codyfight-node-lib",
+  "name": "codyfight-game-client",
   "version": "1.0.0",
-  "description": "A node client to easily call the Codyfight game requests/actions",
+  "description": "Easily implement Codyfight game actions. A library for interacting with game API.",
   "license": "MIT",
-  "repository": "codyfight/codyfight-node-lib",
+  "repository": "codyfight/codyfight-game-client",
   "author": {
     "name": "Codyfight",
     "email": "game@codyfight.com",
