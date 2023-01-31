@@ -13,7 +13,7 @@ Easily implement [Codyfight](https://codyfight.com) game actions.
 ## Install
 
 ```sh
-npm install codyfight-node-lib -D
+npm install codyfight-game-client --save-dev
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ The constructor of the class takes an optional parameter `apiURL`, which is a st
 import it with the following code:
 
 ```js
-import codyfightNodeLib as GameAPI from 'codyfight-node-lib'
+import codyfightNodeLib as GameAPI from 'codyfight-game-client'
 
 
 const gameAPI = new GameAPI(apiURL);
