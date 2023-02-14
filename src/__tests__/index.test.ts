@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-import GameAPI from '../index';
+import GameAPI from '../index'
 
 jest.mock('axios')
 
@@ -38,7 +38,7 @@ describe('GameAPI', () => {
 
     expect(axios).toHaveBeenCalledWith({
       method: 'POST',
-      url: `https://game.codyfight.com/?ckey=${ckey}`,
+      url: `https://game.codyfight.com/`,
       headers: { 'Content-Type': 'application/json' },
       data: params,
     })
@@ -58,7 +58,7 @@ describe('GameAPI', () => {
 
     expect(axios).toHaveBeenCalledWith({
       method: 'PATCH',
-      url: `https://game.codyfight.com/?ckey=${ckey}`,
+      url: `https://game.codyfight.com/`,
       headers: { 'Content-Type': 'application/json' },
       data: params,
     })
@@ -77,7 +77,7 @@ describe('GameAPI', () => {
 
     expect(axios).toHaveBeenCalledWith({
       method: 'PUT',
-      url: `https://game.codyfight.com/?ckey=${ckey}`,
+      url: `https://game.codyfight.com/`,
       headers: { 'Content-Type': 'application/json' },
       data: params,
     })

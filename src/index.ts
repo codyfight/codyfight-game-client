@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const API_URL = 'https://game.codyfight.com/'
 
@@ -44,13 +44,17 @@ export default class GameAPI {
   private async makeRequest(method: string, params: any): Promise<any> {
     const config = {
       method,
-      url: `${this.apiURL}?ckey=${params.ckey}`,
+      url: this.apiURL,
       headers: { 'Content-Type': 'application/json' },
       data: {},
     }
 
     if (method !== 'GET' && method !== 'HEAD') {
       config.data = params
+    }
+
+    if (method === 'GET') {
+      config.url = `${this.apiURL}?ckey=${params.ckey}`
     }
 
     const { data } = await axios(config)
