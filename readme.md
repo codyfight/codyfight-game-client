@@ -25,7 +25,13 @@ import it with the following code:
 ```js
 import GameAPI from 'codyfight-game-client'
 
-const gameAPI = new GameAPI(apiURL)
+const gameAPI = new GameAPI(apiURL, {
+  // Override default headers (optional)
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+})
 ```
 
 ## API

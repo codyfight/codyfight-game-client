@@ -1,12 +1,14 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const API_URL = 'https://game.codyfight.com/'
 
 export default class GameAPI {
   public apiURL: string
+  public headers?: any
 
-  constructor(apiURL: string = API_URL) {
+  constructor(apiURL: string = API_URL, headers?: any) {
     this.apiURL = apiURL
+    this.headers = headers
   }
 
   getGameConstants() {
@@ -45,7 +47,7 @@ export default class GameAPI {
     const config = {
       method,
       url: this.apiURL,
-      headers: { 'Content-Type': 'application/json' },
+      headers: this.headers ?? { 'Content-Type': 'application/json' },
       data: {},
     }
 
