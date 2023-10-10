@@ -5,10 +5,12 @@ const API_URL = 'https://game.codyfight.com/'
 export default class GameAPI {
   public apiURL: string
   public headers?: any
+  public customParams?: any
 
-  constructor(apiURL: string = API_URL, headers?: any) {
+  constructor(apiURL: string = API_URL, headers?: any, customParams?: any) {
     this.apiURL = apiURL
     this.headers = headers
+    this.customParams = customParams
   }
 
   getGameConstants() {
@@ -47,16 +49,16 @@ export default class GameAPI {
     const config = {
       method,
       url: this.apiURL,
+      data: method !== 'GET' && method !== 'HEAD' ? params : {},
       headers: this.headers ?? { 'Content-Type': 'application/json' },
-      data: {},
-    }
-
-    if (method !== 'GET' && method !== 'HEAD') {
-      config.data = params
     }
 
     if (method === 'GET') {
-      config.url = `${this.apiURL}?ckey=${params.ckey}`
+      const customParams = Object.keys(this.customParams)
+        .map((key) => `${key}=${this.customParams[key]}`)
+        .join('&')
+
+      config.url = `${this.apiURL}?ckey=${params.ckey}&${customParams}`
     }
 
     const { data } = await axios(config)
