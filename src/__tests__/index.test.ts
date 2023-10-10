@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import GameAPI from '../index'
+import GameAPI from '../index';
 
 jest.mock('axios')
 
@@ -97,6 +97,30 @@ describe('GameAPI', () => {
       headers: { 'Content-Type': 'application/json' },
       data: {},
     })
+    expect(result).toBe(response.data)
+  })
+
+  it('should make a GET request with custom params and custom headers', async () => {
+    const ckey = 'abc'
+    const customParams = { param1: 'value1', param2: 'value2' }
+    const response = { data: 'game state' }
+    ;(axios as any).mockResolvedValueOnce(response)
+
+    const newGameAPI = new GameAPI(
+      'https://custom.codyfight.com/',
+      { 'Content-Type': 'application/json' },
+      customParams
+    )
+
+    const result = await newGameAPI.check(ckey)
+
+    expect(axios).toHaveBeenCalledWith({
+      method: 'GET',
+      url: `https://custom.codyfight.com/?ckey=${ckey}&param1=value1&param2=value2`,
+      headers: { 'Content-Type': 'application/json' },
+      data: {},
+    })
+
     expect(result).toBe(response.data)
   })
 })

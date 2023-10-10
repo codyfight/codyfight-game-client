@@ -54,11 +54,15 @@ export default class GameAPI {
     }
 
     if (method === 'GET') {
-      const customParams = Object.keys(this.customParams)
-        .map((key) => `${key}=${this.customParams[key]}`)
-        .join('&')
+      const customParams = this.customParams
+        ? Object.keys(this.customParams)
+            .map((key) => `${key}=${this.customParams[key]}`)
+            .join('&')
+        : ''
 
-      config.url = `${this.apiURL}?ckey=${params.ckey}&${customParams}`
+      config.url = `${this.apiURL}?ckey=${params.ckey}${
+        customParams ? `&${customParams}` : ''
+      }`
     }
 
     const { data } = await axios(config)
