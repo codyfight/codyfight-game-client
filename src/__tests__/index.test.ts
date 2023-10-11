@@ -26,6 +26,15 @@ describe('GameAPI', () => {
     expect(gameConstants).toEqual({})
   })
 
+  it('should return statistics', () => {
+    const statistics = gameApi.getStatistics()
+    expect(statistics).toEqual({
+      success: 0,
+      error: 0,
+      average_time: 0,
+    })
+  })
+
   it('should make a POST request on init', async () => {
     const ckey = 'abc'
     const mode = 2
