@@ -112,10 +112,12 @@ export default class GameAPI {
     } catch (err: any) {
       const endTime = new Date().getTime()
 
-      if (!this.hasStatistics) return
+      if (this.hasStatistics) {
+        const requestDuration = endTime - startTime
+        this.statistics.error.push(requestDuration)
+      }
 
-      const requestDuration = endTime - startTime
-      this.statistics.error.push(requestDuration)
+      return err?.response?.data ?? { error: err.message }
     }
   }
 }
