@@ -5,8 +5,11 @@ const API_URL = 'https://game.codyfight.com/'
 export default class GameAPI {
   public statistics: {
     success: number[]
+    error: number
     time: number | string
   }
+
+  private errors: number
 
   public apiURL: string
   public headers?: any
@@ -24,8 +27,11 @@ export default class GameAPI {
     this.customParams = customParams
     this.hasStatistics = hasStatistics
 
+    this.errors = 0
+
     this.statistics = {
       success: [],
+      error: 0,
       time: 0,
     }
   }
@@ -91,9 +97,13 @@ export default class GameAPI {
       }`
     }
 
+    this.errors++
+
     const startTime = new Date().getTime()
     const { data: gameState } = await axios(config)
     const endTime = new Date().getTime()
+
+    this.errors--
 
     if (this.hasStatistics) {
       const requestDuration = endTime - startTime
@@ -101,7 +111,9 @@ export default class GameAPI {
 
       const sum = this.statistics.success.reduce((a, b) => a + b, 0)
       const avg = (this.statistics.time = sum / this.statistics.success.length)
+
       this.statistics.time = (avg / 1000).toFixed(3)
+      this.statistics.error = this.errors
     }
 
     return gameState
