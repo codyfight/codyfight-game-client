@@ -1,6 +1,6 @@
 {
   "name": "codyfight-game-client",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "type": "module",
   "description": "Easily implement Codyfight game actions. A library for interacting with game API.",
   "license": "MIT",
