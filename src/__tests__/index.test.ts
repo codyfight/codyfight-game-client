@@ -27,7 +27,12 @@ describe('GameAPI', () => {
   })
 
   it('should return statistics', () => {
-    const statistics = gameApi.getStatistics()
+    expect(gameApi.getStatistics()).toEqual('Statistics are not enabled!')
+
+    const customApiUrl = 'https://custom.codyfight.com/'
+    const gameApiWithStatistics = new GameAPI(customApiUrl, true)
+    const statistics = gameApiWithStatistics.getStatistics()
+
     expect(statistics).toEqual({
       success: 0,
       error: 0,

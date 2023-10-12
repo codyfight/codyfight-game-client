@@ -40,6 +40,8 @@ export default class GameAPI {
   }
 
   public getStatistics() {
+    if (!this.hasStatistics) return 'Statistics are not enabled!'
+    
     return {
       success: this.statistics.success.length,
       error: this.statistics.error.length,
