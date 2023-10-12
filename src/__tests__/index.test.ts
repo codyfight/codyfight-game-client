@@ -117,6 +117,7 @@ describe('GameAPI', () => {
 
     const newGameAPI = new GameAPI(
       'https://custom.codyfight.com/',
+      false,
       { 'Content-Type': 'application/json' },
       customParams
     )

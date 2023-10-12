@@ -12,11 +12,18 @@ export default class GameAPI {
   public apiURL: string
   public headers?: any
   public customParams?: any
+  public hasStatistics?: boolean
 
-  constructor(apiURL: string = API_URL, headers?: any, customParams?: any) {
+  constructor(
+    apiURL: string = API_URL,
+    hasStatistics?: boolean,
+    headers?: any,
+    customParams?: any
+  ) {
     this.apiURL = apiURL
     this.headers = headers
     this.customParams = customParams
+    this.hasStatistics = hasStatistics
 
     this.statistics = {
       success: [],
@@ -89,18 +96,24 @@ export default class GameAPI {
 
     try {
       const res = await axios(config)
-
       const endTime = new Date().getTime()
-      const requestDuration = endTime - startTime
-      this.statistics.success.push(requestDuration)
 
-      const sum = this.statistics.success.reduce((a, b) => a + b, 0)
-      const avg = (this.statistics.time = sum / this.statistics.success.length)
-      this.statistics.time = (avg / 1000).toFixed(3)
+      if (this.hasStatistics) {
+        const requestDuration = endTime - startTime
+        this.statistics.success.push(requestDuration)
+
+        const sum = this.statistics.success.reduce((a, b) => a + b, 0)
+        const avg = (this.statistics.time =
+          sum / this.statistics.success.length)
+        this.statistics.time = (avg / 1000).toFixed(3)
+      }
 
       return res?.data
     } catch (err: any) {
       const endTime = new Date().getTime()
+
+      if (!this.hasStatistics) return
+
       const requestDuration = endTime - startTime
       this.statistics.error.push(requestDuration)
     }
