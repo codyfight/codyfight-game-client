@@ -47,6 +47,7 @@ export default class GameAPI {
     if (!this.hasStatistics) return 'Statistics are not enabled!'
 
     return {
+      error: this.statistics.error,
       success: this.statistics.success.length,
       average_time: this.statistics.time,
     }

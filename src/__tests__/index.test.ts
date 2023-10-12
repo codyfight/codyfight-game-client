@@ -34,6 +34,7 @@ describe('GameAPI', () => {
     const statistics = gameApiWithStatistics.getStatistics()
 
     expect(statistics).toEqual({
+      error: 0,
       success: 0,
       average_time: 0,
     })
