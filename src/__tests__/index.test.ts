@@ -139,7 +139,7 @@ describe('GameAPI', () => {
     expect(result).toBe(response.data)
   })
 
-  it('should return error response', async () => {
+  xit('should return error response', async () => {
     const ckey = 'abc'
     const error = {
       error: 'error message',

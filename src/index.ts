@@ -41,7 +41,7 @@ export default class GameAPI {
 
   public getStatistics() {
     if (!this.hasStatistics) return 'Statistics are not enabled!'
-    
+
     return {
       success: this.statistics.success.length,
       error: this.statistics.error.length,
@@ -95,31 +95,42 @@ export default class GameAPI {
     }
 
     const startTime = new Date().getTime()
+    const res = await axios(config)
+    const endTime = new Date().getTime()
 
-    try {
-      const res = await axios(config)
-      const endTime = new Date().getTime()
+    if (this.hasStatistics) {
+      const requestDuration = endTime - startTime
+      this.statistics.success.push(requestDuration)
 
-      if (this.hasStatistics) {
-        const requestDuration = endTime - startTime
-        this.statistics.success.push(requestDuration)
-
-        const sum = this.statistics.success.reduce((a, b) => a + b, 0)
-        const avg = (this.statistics.time =
-          sum / this.statistics.success.length)
-        this.statistics.time = (avg / 1000).toFixed(3)
-      }
-
-      return res?.data
-    } catch (err: any) {
-      const endTime = new Date().getTime()
-
-      if (this.hasStatistics) {
-        const requestDuration = endTime - startTime
-        this.statistics.error.push(requestDuration)
-      }
-
-      return err?.response?.data ?? { error: err.message }
+      const sum = this.statistics.success.reduce((a, b) => a + b, 0)
+      const avg = (this.statistics.time = sum / this.statistics.success.length)
+      this.statistics.time = (avg / 1000).toFixed(3)
     }
+
+    return res?.data
+
+    // .then(() => {
+    //   const endTime = new Date().getTime()
+
+    //   if (this.hasStatistics) {
+    //     const requestDuration = endTime - startTime
+    //     this.statistics.success.push(requestDuration)
+
+    //     const sum = this.statistics.success.reduce((a, b) => a + b, 0)
+    //     const avg = (this.statistics.time =
+    //       sum / this.statistics.success.length)
+    //     this.statistics.time = (avg / 1000).toFixed(3)
+    //   }
+
+    //   return res?.data
+    // })
+    // .catch(() => {
+    //   const endTime = new Date().getTime()
+
+    //   if (this.hasStatistics) {
+    //     const requestDuration = endTime - startTime
+    //     this.statistics.error.push(requestDuration)
+    //   }
+    // })
   }
 }
