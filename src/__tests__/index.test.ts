@@ -35,7 +35,6 @@ describe('GameAPI', () => {
 
     expect(statistics).toEqual({
       success: 0,
-      error: 0,
       average_time: 0,
     })
   })
@@ -137,25 +136,5 @@ describe('GameAPI', () => {
     })
 
     expect(result).toBe(response.data)
-  })
-
-  xit('should return error response', async () => {
-    const ckey = 'abc'
-    const error = {
-      error: 'error message',
-    }
-
-    ;(axios as any).mockRejectedValueOnce({ response: { data: error } })
-
-    const result = await gameApi.check(ckey)
-
-    expect(axios).toHaveBeenCalledWith({
-      method: 'GET',
-      url: `https://game.codyfight.com/?ckey=${ckey}`,
-      headers: { 'Content-Type': 'application/json' },
-      data: {},
-    })
-
-    expect(result).toBe(error)
   })
 })
