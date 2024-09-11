@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-import GameAPI from '../index';
+import GameAPI from '../index'
 
 jest.mock('axios')
 
@@ -53,7 +53,10 @@ describe('GameAPI', () => {
     expect(axios).toHaveBeenCalledWith({
       method: 'POST',
       url: `https://game.codyfight.com/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'CodyfightBot',
+      },
       data: params,
     })
     expect(result).toBe(response.data)
@@ -73,7 +76,10 @@ describe('GameAPI', () => {
     expect(axios).toHaveBeenCalledWith({
       method: 'PATCH',
       url: `https://game.codyfight.com/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'CodyfightBot',
+      },
       data: params,
     })
     expect(result).toBe(response.data)
@@ -92,7 +98,10 @@ describe('GameAPI', () => {
     expect(axios).toHaveBeenCalledWith({
       method: 'PUT',
       url: `https://game.codyfight.com/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'CodyfightBot',
+      },
       data: params,
     })
     expect(result).toBe(response.data)
@@ -108,7 +117,10 @@ describe('GameAPI', () => {
     expect(axios).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://game.codyfight.com/?ckey=${ckey}`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'CodyfightBot',
+      },
       data: {},
     })
     expect(result).toBe(response.data)
@@ -132,7 +144,10 @@ describe('GameAPI', () => {
     expect(axios).toHaveBeenCalledWith({
       method: 'GET',
       url: `https://custom.codyfight.com/?ckey=${ckey}&param1=value1&param2=value2`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': 'CodyfightBot',
+      },
       data: {},
     })
 

@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios'
 
 const API_URL = 'https://game.codyfight.com/'
 
@@ -83,7 +83,11 @@ export default class GameAPI {
       method,
       url: this.apiURL,
       data: method === 'GET' ? {} : params,
-      headers: this.headers ?? { 'Content-Type': 'application/json' },
+      headers: {
+        ...this.headers,
+        'Content-Type': 'application/json',
+        'User-Agent': 'CodyfightBot',
+      },
     }
 
     if (method === 'GET') {
