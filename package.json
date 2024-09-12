@@ -1,6 +1,6 @@
 {
   "name": "codyfight-game-client",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "type": "module",
   "description": "Easily implement Codyfight game actions. A library for interacting with game API.",
   "license": "MIT",
@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "rimraf ./dist && jest && tsc",
-    "test": "tsc --noEmit && jest"
+    "test": "rm -rf ./dist && tsc --noEmit && jest"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

@@ -86,7 +86,7 @@ export default class GameAPI {
       headers: {
         ...this.headers,
         'Content-Type': 'application/json',
-        'User-Agent': 'CodyfightBot',
+        'X-Codyfight-Client': 'server'
       },
     }
 

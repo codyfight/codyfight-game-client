@@ -55,7 +55,7 @@ describe('GameAPI', () => {
       url: `https://game.codyfight.com/`,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'CodyfightBot',
+        'X-Codyfight-Client': 'server',
       },
       data: params,
     })
@@ -78,7 +78,7 @@ describe('GameAPI', () => {
       url: `https://game.codyfight.com/`,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'CodyfightBot',
+        'X-Codyfight-Client': 'server',
       },
       data: params,
     })
@@ -100,7 +100,7 @@ describe('GameAPI', () => {
       url: `https://game.codyfight.com/`,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'CodyfightBot',
+        'X-Codyfight-Client': 'server',
       },
       data: params,
     })
@@ -119,7 +119,7 @@ describe('GameAPI', () => {
       url: `https://game.codyfight.com/?ckey=${ckey}`,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'CodyfightBot',
+        'X-Codyfight-Client': 'server',
       },
       data: {},
     })
@@ -146,7 +146,7 @@ describe('GameAPI', () => {
       url: `https://custom.codyfight.com/?ckey=${ckey}&param1=value1&param2=value2`,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'CodyfightBot',
+        'X-Codyfight-Client': 'server',
       },
       data: {},
     })
