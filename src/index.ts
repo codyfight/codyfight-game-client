@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
+import type { IGameState } from './types/game'
+import type { GameMode } from './types/game/state.type'
+
 const API_URL = 'https://game.codyfight.com/'
 
 export default class GameAPI {
@@ -53,12 +56,20 @@ export default class GameAPI {
     }
   }
 
+  public async check(ckey: string): Promise<IGameState> {
+    return await this.makeRequest('GET', { ckey })
+  }
+
   public async init(
     ckey: string,
-    mode: 0 | 1 | 2 | 3,
-    opponent: string
-  ): Promise<any> {
+    mode: GameMode,
+    opponent?: string
+  ): Promise<IGameState> {
     return await this.makeRequest('POST', { ckey, mode, opponent })
+  }
+
+  public async move(ckey: string, x: number, y: number): Promise<IGameState> {
+    return await this.makeRequest('PUT', { ckey, x, y })
   }
 
   public async cast(
@@ -70,15 +81,21 @@ export default class GameAPI {
     return await this.makeRequest('PATCH', { ckey, skill_id, x, y })
   }
 
-  public async move(ckey: string, x: number, y: number): Promise<any> {
-    return await this.makeRequest('PUT', { ckey, x, y })
+  public async surrender(ckey: string): Promise<IGameState> {
+    return await this.makeRequest('DELETE', { ckey })
   }
 
-  public async check(ckey: string): Promise<any> {
-    return await this.makeRequest('GET', { ckey })
-  }
-
-  private async makeRequest(method: string, params: any): Promise<any> {
+  private async makeRequest(
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
+    params: {
+      ckey: string
+      mode?: GameMode
+      opponent?: string
+      skill_id?: number
+      x?: number
+      y?: number
+    }
+  ): Promise<IGameState> {
     const config: AxiosRequestConfig = {
       method,
       url: this.apiURL,
@@ -86,7 +103,7 @@ export default class GameAPI {
       headers: {
         ...this.headers,
         'Content-Type': 'application/json',
-        'X-Codyfight-Client': 'server'
+        'X-Codyfight-Client': 'server',
       },
     }
 
@@ -121,6 +138,6 @@ export default class GameAPI {
       this.statistics.error = this.errors
     }
 
-    return gameState
+    return gameState as IGameState
   }
 }
